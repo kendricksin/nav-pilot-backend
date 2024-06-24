@@ -1,7 +1,7 @@
-import sqlite3 from 'sqlite3';
+const sqlite3 = require('sqlite3');
 
 // Connect to the database
-const db = new sqlite3.Database('./server/database.sqlite');
+const db = new sqlite3.Database('./db/database.sqlite');
 
 // Create table and insert sample data
 db.serialize(() => {
@@ -28,8 +28,8 @@ db.serialize(() => {
 function insertSampleData() {
   const sampleData = [
     { Name: 'Sentosa', LatDeg: 1, LatMn: 15.298, LonDeg: 103, LonMn: 49.056 },
-    { Name: 'Sentosa', LatDeg: 1, LatMn: 15.298, LonDeg: 103, LonMn: 49.056 },
-    { Name: 'Sentosa', LatDeg: 1, LatMn: 15.298, LonDeg: 103, LonMn: 49.056 },
+    { Name: 'Bukom Tw', LatDeg: 1, LatMn: 13.625, LonDeg: 103, LonMn: 46.625 },
+    { Name: 'NE Semakau', LatDeg: 1, LatMn: 12.641, LonDeg: 103, LonMn: 46.804 },
     // Add more sample data as needed
     // db.run("INSERT INTO navmarks (Name, LatDeg, LatMn, LonDeg, LonMn) VALUES (Sentosa, 1, 15.298, 103, 49.056)");
     // db.run("INSERT INTO navmarks (Name, LatDeg, LatMn, LonDeg, LonMn) VALUES (Bukom Tw, 1, 13.625, 103, 46.625)");

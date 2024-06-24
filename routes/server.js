@@ -59,7 +59,24 @@ router.get('/api/nav-marks', (req, res) => {
       return;
     }
     res.json({ data: rows });
+    console.log('Get NavMarks called');
   });
+});
+
+router.post('/api/nav-marks', (req, res) => {
+  const { Name, LatDeg, LatMn, LonDeg, LonMn } = req.body;
+  db.run(
+    'INSERT INTO navtable (Name, LatDeg, LatMn, LonDeg, LonMn) VALUES (?, ?, ?, ?, ?)',
+    [Name, LatDeg, LatMn, LonDeg, LonMn],
+    function (err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID });
+      console.log('Get NavMarks Posted');
+    }
+  );
 });
 
 router.get('/api/waypoints', (req, res) => {
@@ -68,8 +85,25 @@ router.get('/api/waypoints', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
+    console.log('Get Waypoints called:', {data: rows});
     res.json({ data: rows });
   });
+});
+
+router.post('/api/waypoints', (req, res) => {
+  const { Point, LatDeg, LatMn, LonDeg, LonMn } = req.body;
+  db.run(
+    'INSERT INTO navtable (Point, LatDeg, LatMn, LonDeg, LonMn) VALUES (?, ?, ?, ?, ?)',
+    [Point, LatDeg, LatMn, LonDeg, LonMn],
+    function (err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID });
+      console.log('Get Waypoints Posted');
+    }
+  );
 });
 
 module.exports = router
