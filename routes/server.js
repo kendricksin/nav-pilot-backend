@@ -86,7 +86,8 @@ router.get('/api/waypoints', (req, res) => {
       return;
     }
     console.log('Get Waypoints called:', {data: rows});
-    res.json({ data: rows });
+    const jsonData = JSON.stringify(rows);
+    res.json(jsonData);
   });
 });
 
