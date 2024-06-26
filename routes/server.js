@@ -58,8 +58,8 @@ router.get('/api/nav-marks', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json({ data: rows });
-    console.log('Get NavMarks called');
+    const jsonData = JSON.stringify(rows);
+    res.json(jsonData);
   });
 });
 
@@ -85,7 +85,7 @@ router.get('/api/waypoints', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    console.log('Get Waypoints called:', {data: rows});
+    // stringify first before parsing to JSON
     const jsonData = JSON.stringify(rows);
     res.json(jsonData);
   });
